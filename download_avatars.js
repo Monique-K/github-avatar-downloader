@@ -22,7 +22,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 };
 
 
-if (owner === undefined || name === undefined) {
+if (owner === undefined || name === undefined) { // makes CL arguments mandatory
     console.log("Please try again by entering a repo owner and repo name!")
 } else {
     getRepoContributors(owner, name, function(err, result) {
@@ -33,9 +33,9 @@ if (owner === undefined || name === undefined) {
             console.log(result[i].avatar_url);
         }
     });
-}
+};
 
-function downloadImageByURL(url, filePath) {
+function downloadImageByURL(url, filePath) { //saves image to custom file path
     filePath = "./avatars/" + filePath + ".jpg"
     request(url).pipe(fs.createWriteStream(filePath));
 };
