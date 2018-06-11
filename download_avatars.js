@@ -23,22 +23,20 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
 
 if (owner === undefined || name === undefined) {
-  console.log("Please try again by entering a repo owner and repo name!")
+    console.log("Please try again by entering a repo owner and repo name!")
 } else {
-  getRepoContributors(owner, name, function(err, result) {
-    console.log("Errors:", err);
-    console.log("Result:", result);
-    for (i = 0; i < result.length; i++) {
-      downloadImageByURL(result[i].avatar_url, result[i].login)
-      console.log(result[i].avatar_url);
-    }
- });
+    getRepoContributors(owner, name, function(err, result) {
+        console.log("Errors:", err);
+        console.log("Result:", result);
+        for (i = 0; i < result.length; i++) {
+            downloadImageByURL(result[i].avatar_url, result[i].login)
+            console.log(result[i].avatar_url);
+        }
+    });
 }
 
 function downloadImageByURL(url, filePath) {
     filePath = "./avatars/" + filePath + ".jpg"
     request(url).pipe(fs.createWriteStream(filePath));
-  };
-
-
+};
 
